@@ -11,7 +11,8 @@ resource "aws_instance" "nginx" {
   }
   user_data       = file("install_nginx.sh")
   key_name        = "terraform"
-  security_groups = ["nginx-sg"]
+  vpc_security_group_ids = [ aws_security_group.nginx-sg.id ]
+  # security_groups = ["nginx-sg"]
 }
 
 resource "aws_security_group" "nginx-sg" {
@@ -55,8 +56,4 @@ resource "aws_security_group" "nginx-sg" {
 
 output "domain-name" {
   value = aws_instance.nginx.public_dns
-}
-
-output "application-url" {
-  value = "${aws_instance.nginx.public_dns}/index.php"
 }
