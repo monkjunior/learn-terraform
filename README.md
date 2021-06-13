@@ -1,2 +1,3 @@
-# learn-terraform
-learn terraform from scratch
+# Learn terraform
+
+Where i store my snippets
